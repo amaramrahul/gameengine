@@ -1,7 +1,7 @@
 About the Application
 =====================
 
-This is a prototype which I have built in some of my spare time and should no way be considered production-ready. There are a lot of best practices (ex. documentation, unit tests, integration tests, exception handling, logging, using external configuration files) which I'd follow in production, but not implemented here, as the focus of this prototype was more on system design + class design. Read the design document to understand more about the Requirements and Design Challenges.
+This is a prototype which I have built in some of my spare time and should no way be considered production-ready. There are a lot of best practices (ex. documentation, unit tests, integration tests, exception handling, logging, using external configuration files) which I'd follow in production, but not implemented here, as the focus of this prototype was more on system design + class design. Read the design.odt document to understand more about the Requirements and Design Challenges.
 
 
 Running the Application (Tested on Debian with OpenJDK 8)
