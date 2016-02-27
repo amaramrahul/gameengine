@@ -43,7 +43,7 @@ public class TimeoutObserver implements Observer {
         Producer<Integer, String> producer = new KafkaProducer<>(props);
         try {
             producer.send(new ProducerRecord<Integer, String>(
-                    "timeout", game.getGameId(), mapper.writeValueAsString(params)));
+                    game.getGameName(), game.getGameId(), mapper.writeValueAsString(params)));
         } catch (IOException e) {
             e.printStackTrace();
         }

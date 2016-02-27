@@ -17,10 +17,12 @@ import java.util.Properties;
 public class TimeoutMonitor {
     private static final ObjectMapper mapper = new ObjectMapper();
 
+    String topic;
     Integer partitionId; // partition to monitor
     TimeoutGameEventHandler timeoutGameEventHandler;
 
-    public TimeoutMonitor(Integer partitionId) {
+    public TimeoutMonitor(String topic, Integer partitionId) {
+        this.topic = topic;
         this.partitionId = partitionId;
         timeoutGameEventHandler = new TimeoutGameEventHandler();
     }
@@ -35,7 +37,7 @@ public class TimeoutMonitor {
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         KafkaConsumer<Integer, String> consumer = new KafkaConsumer<>(props);
-        consumer.assign(Arrays.asList(new TopicPartition("timeout", this.partitionId)));
+        consumer.assign(Arrays.asList(new TopicPartition(topic, partitionId)));
         while (true) {
             ConsumerRecords<Integer, String> records = consumer.poll(100);
             for (ConsumerRecord<Integer, String> record : records) {
@@ -59,7 +61,7 @@ public class TimeoutMonitor {
     }
 
     public static void main(String[] args) throws IOException {
-        TimeoutMonitor timeoutMonitor = new TimeoutMonitor(Integer.parseInt(args[0]));
+        TimeoutMonitor timeoutMonitor = new TimeoutMonitor(args[0], Integer.parseInt(args[1]));
         timeoutMonitor.monitor();
     }
 }

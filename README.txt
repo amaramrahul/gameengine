@@ -73,7 +73,7 @@ $ mvn jetty:run -D jetty.http.port=8082 # second game engine server
 
 (Timeout monitor service)
 $ cd /path-to-codebase/gameengine
-$ mvn exec:java -Dexec.mainClass=com.example.gameengine.timeoutmonitor.TimeoutMonitor -Dexec.args="0"
+$ mvn exec:java -Dexec.mainClass=com.example.gameengine.timeoutmonitor.TimeoutMonitor -Dexec.args="LuckyNumber 0"
 
 
 Starting the client sessions
